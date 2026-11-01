@@ -1,13 +1,32 @@
+
 import { betterAuth } from "better-auth";
-import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "@better-auth/mongo-adapter";
+import { MongoClient } from "mongodb";
 
-// MongoDB Connection
-const client = new MongoClient(process.env.MONGO_URI);
+// Validate environment variables
+if (!process.env.MONGO_URI) {
+  throw new Error("MONGO_URI is missing from .env.local");
+}
 
-export const db = client.db("booknook_user");
+if (!process.env.BETTER_AUTH_SECRET) {
+  throw new Error("BETTER_AUTH_SECRET is missing from .env.local");
+}
 
-// Better Auth Configuration
+// MongoDB Client Singleton
+const globalForMongo = globalThis;
+
+const client =
+  globalForMongo.mongoClient ||
+  new MongoClient(process.env.MONGO_URI);
+
+if (process.env.NODE_ENV !== "production") {
+  globalForMongo.mongoClient = client;
+}
+
+// Database
+const db = client.db("booknook_user");
+
+// Better Auth
 export const auth = betterAuth({
   database: mongodbAdapter(db, {
     client,
@@ -17,24 +36,18 @@ export const auth = betterAuth({
 
   secret: process.env.BETTER_AUTH_SECRET,
 
-  trustedOrigins: [
-    "http://localhost:3000",
-  ],
-
-  // Email & Password Authentication
   emailAndPassword: {
     enabled: true,
-
-    minPasswordLength: 6,
-
-    requireEmailVerification: false,
+    minPasswordLength: 8,
+    autoSignIn: true,
   },
 
-  // Social Authentication
   socialProviders: {
-    google: {
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    github: {
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      scope: ["user:email"],
     },
   },
 });
+
