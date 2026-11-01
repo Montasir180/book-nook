@@ -16,6 +16,29 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Authentication
+
+BookNook uses [Better Auth](https://www.better-auth.com) with email/password and Google sign-in.
+
+- Sign in: [http://localhost:3000/login](http://localhost:3000/login)
+- Sign up: [http://localhost:3000/signup](http://localhost:3000/signup)
+- Auth API: `/api/auth/[...all]`
+
+To enable Google sign-in, create an OAuth client in the
+[Google Cloud Console](https://console.cloud.google.com/apis/credentials) and add these
+values to `.env.local`:
+
+```bash
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+```
+
+Add this authorized redirect URI to the Google OAuth client:
+
+```text
+http://localhost:3000/api/auth/callback/google
+```
+
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
