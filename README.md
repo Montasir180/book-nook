@@ -1,59 +1,137 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+📚 BookNook – A Small Online Library
 
-## Getting Started
+BookNook is an online library platform where readers can explore books, add new books, borrow books, and return them. It provides a simple and user-friendly way to manage a personal library and discover new reads.
 
-First, run the development server:
+🌐 Live Website
 
-```bash
+- Live Site: [Add Your Live Website URL]
+- Frontend Repository: [GitHub Repository]
+- Backend Repository: [GitHub Repository]
+
+✨ Features
+
+- 📖 Browse Books: Explore a collection of books with detailed information.
+- 🔐 Authentication: Secure registration and login using email and password.
+- 🔵 Google Login: Sign in easily using your Google account.
+- ➕ Add Books: Add new books with images, categories, and descriptions.
+- ✏️ Manage Books: Edit and delete books added by you.
+- 📚 Borrow Books: Borrow available books from the library.
+- 🔄 Return Books: Return borrowed books and manage your borrowing history.
+- 👤 User Dashboard: Access your personal books and borrowing information.
+- 📱 Responsive Design: Optimized for mobile, tablet, and desktop devices.
+- 🔔 Toast Notifications: Get feedback for successful actions and errors.
+
+🛠️ Technologies Used
+
+Frontend
+
+- Next.js (App Router)
+- JavaScript (ES6+)
+- ShareSkin UI
+- Tailwind CSS
+- Swiper.js
+- Other UI libraries and components
+
+Backend
+
+- Node.js
+- Express.js
+- JavaScript
+- MongoDB
+
+Authentication & Security
+
+- Better Auth
+- Google OAuth Authentication
+- JWT (JSON Web Token)
+
+Additional Tools
+
+- Git & GitHub
+- imgbb / Postimages (Image Hosting)
+- npm
+
+📂 Main Pages
+
+Page| Description
+Home| Hero banner, latest arrivals, and featured sections
+All Books| Browse all available books
+Book Details| View complete information about a book
+Add Book| Add new books to the library
+My Books| Manage books added by you
+My Borrows| View and return borrowed books
+Login| Sign in using email or Google
+Register| Create a new account
+
+⚙️ Core Functionalities
+
+- Complete CRUD operations for book management.
+- User authentication and protected routes.
+- Google OAuth login integration.
+- RESTful API integration with Express.js.
+- MongoDB database integration.
+- Book borrowing and returning system.
+- Available book copy management.
+- Duplicate borrowing prevention.
+- Responsive navigation and user interface.
+- Custom loading states and error handling.
+
+🚀 Getting Started
+
+Clone the repositories
+
+git clone YOUR_FRONTEND_REPOSITORY_URL
+git clone YOUR_BACKEND_REPOSITORY_URL
+
+Install dependencies
+
+Run this command inside both project directories:
+
+npm install
+
+Environment Variables
+
+Create the required environment files and configure your credentials.
+
+Frontend (.env.local)
+
+NEXT_PUBLIC_API_URL=your_backend_api_url
+
+Backend (.env)
+
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+CLIENT_URL=your_frontend_url
+
+Also configure your Better Auth and Google OAuth credentials according to your implementation.
+
+Run the Project
+
+Start the backend:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Start the frontend in another terminal:
 
-## Authentication
+npm run dev
 
-BookNook uses [Better Auth](https://www.better-auth.com) with email/password and Google sign-in.
+📡 API Endpoints
 
-- Sign in: [http://localhost:3000/login](http://localhost:3000/login)
-- Sign up: [http://localhost:3000/signup](http://localhost:3000/signup)
-- Auth API: `/api/auth/[...all]`
+Method| Endpoint| Description
+GET| "/books"| Get all books
+GET| "/books/:id"| Get book details
+POST| "/books"| Add a new book
+PATCH| "/books/:id"| Update a book
+DELETE| "/books/:id"| Delete a book
+POST| "/borrows"| Borrow a book
+GET| "/borrows"| Get borrowed books
+DELETE| "/borrows/:id"| Return a book
 
-To enable Google sign-in, create an OAuth client in the
-[Google Cloud Console](https://console.cloud.google.com/apis/credentials) and add these
-values to `.env.local`:
+🎯 Project Goal
 
-```bash
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
-```
+The main goal of BookNook is to make book discovery and library management easier through a simple, interactive, and user-friendly web application.
 
-Add this authorized redirect URI to the Google OAuth client:
+---
 
-```text
-http://localhost:3000/api/auth/callback/google
-```
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built with ❤️ using Next.js, Express.js, and MongoDB.
