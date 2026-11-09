@@ -173,36 +173,7 @@ export default async function Footer() {
         </div>
 
         {/* NEWSLETTER */}
-        <div className="relative mt-16 overflow-hidden rounded-[28px] bg-[#252722] p-7 text-white sm:p-10">
-          {/* DECORATIVE CIRCLES */}
-          <div className="pointer-events-none absolute -right-16 -top-24 size-64 rounded-full border border-white/10" />
-
-          <div className="pointer-events-none absolute -right-5 -top-12 size-44 rounded-full border border-white/10" />
-
-          <div className="relative flex flex-col justify-between gap-8 md:flex-row md:items-center">
-            <div>
-              <div className="mb-3 flex items-center gap-2 text-[#D98B6C]">
-                <Send size={14} />
-
-                <span className="text-xs font-semibold uppercase tracking-[0.2em]">
-                  The Reading Letter
-                </span>
-              </div>
-
-              <h3 className="font-serif text-2xl font-semibold sm:text-3xl">
-                Stories worth sharing.
-              </h3>
-
-              <p className="mt-3 text-sm text-white/55">
-                Discover new books and find inspiration for your next reading
-                journey.
-              </p>
-            </div>
-
-            {/* NEWSLETTER FORM - UI ONLY */}
-            <NewsletterForm />
-          </div>
-        </div>
+        
 
         {/* BOTTOM BAR */}
         <div className="mt-10 flex flex-col items-center justify-between gap-5 border-t border-[#DED8CC] pt-7 text-center sm:flex-row sm:text-left">
@@ -214,16 +185,7 @@ export default async function Footer() {
             There is no friend as loyal as a book.
           </p>
 
-          <a
-            href="#top"
-            className="group flex items-center gap-2 text-xs font-medium text-[#55584F] transition-colors hover:text-[#B84E2D]"
-          >
-            Back to top
-
-            <span className="transition-transform duration-300 group-hover:-translate-y-1">
-              ↑
-            </span>
-          </a>
+          
         </div>
       </div>
     </footer>

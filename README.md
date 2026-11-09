@@ -18,26 +18,37 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Authentication
 
-BookNook uses [Better Auth](https://www.better-auth.com) with email/password and Google sign-in.
+BookNook uses [Better Auth](https://www.better-auth.com) with email/password and GitHub sign-in.
 
 - Sign in: [http://localhost:3000/login](http://localhost:3000/login)
 - Sign up: [http://localhost:3000/signup](http://localhost:3000/signup)
+- Profile: [http://localhost:3000/profile](http://localhost:3000/profile)
 - Auth API: `/api/auth/[...all]`
 
-To enable Google sign-in, create an OAuth client in the
-[Google Cloud Console](https://console.cloud.google.com/apis/credentials) and add these
-values to `.env.local`:
+### GitHub OAuth setup
+
+Create an OAuth App in **GitHub → Settings → Developer settings → OAuth Apps**
+and add these values to `.env.local`:
 
 ```bash
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
+GITHUB_CLIENT_ID=your-github-client-id
+GITHUB_CLIENT_SECRET=your-github-client-secret
 ```
 
-Add this authorized redirect URI to the Google OAuth client:
+Set the **Authorization callback URL** in the GitHub OAuth App to:
 
 ```text
-http://localhost:3000/api/auth/callback/google
+http://localhost:3000/api/auth/callback/github
 ```
+
+For production, update `BETTER_AUTH_URL` and `NEXT_PUBLIC_APP_URL` to the deployed
+URL and add the matching callback URL to the same GitHub OAuth App.
+
+### MongoDB Atlas
+
+Auth data is stored in MongoDB. If sign-up or sign-in returns a `500` and the server
+log shows `tlsv1 alert internal error`, add your current public IP to
+**Atlas → Network Access** (or allow `0.0.0.0/0` for local development only).
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 

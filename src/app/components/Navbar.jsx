@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -53,6 +52,17 @@ export default function Navbar() {
     return pathname === href || pathname.startsWith(href + "/");
   };
 
+  // Protect My Books and My Borrows
+  const getNavHref = (link) => {
+    const protectedLinks = ["My Books", "My Borrows"];
+
+    if (protectedLinks.includes(link.name) && !user) {
+      return "/login";
+    }
+
+    return link.href;
+  };
+
   const handleSignOut = async () => {
     try {
       setMobileMenu(false);
@@ -68,7 +78,7 @@ export default function Navbar() {
 
   return (
     <>
-      <style >{`
+      <style>{`
 
         /* ==========================
            BOOKNOOK GLASS NAVBAR
@@ -668,13 +678,11 @@ export default function Navbar() {
       `}</style>
 
       <header className="navbar-wrapper">
-
         <nav className="booknook-navbar">
 
           {/* LOGO */}
 
           <Link href="/" className="navbar-logo">
-
             <div className="logo-icon">
               <BookOpen size={24} strokeWidth={2.2} />
             </div>
@@ -686,20 +694,18 @@ export default function Navbar() {
 
               <small>YOUR LITTLE READING SPACE</small>
             </div>
-
           </Link>
 
           {/* DESKTOP NAVIGATION */}
 
           <div className="desktop-nav">
-
             {navLinks.map((link) => {
               const Icon = link.icon;
 
               return (
                 <Link
                   key={link.name}
-                  href={link.href}
+                  href={getNavHref(link)}
                   className={`nav-link ${
                     isActive(link.href) ? "active" : ""
                   }`}
@@ -709,16 +715,13 @@ export default function Navbar() {
                 </Link>
               );
             })}
-
           </div>
 
           {/* RIGHT SIDE */}
 
           <div className="navbar-right">
-
             {!isPending && !user && (
               <div className="auth-actions">
-
                 <Link href="/login" className="signin-btn">
                   Sign In
                 </Link>
@@ -731,13 +734,11 @@ export default function Navbar() {
                     className="auth-icon"
                   />
                 </Link>
-
               </div>
             )}
 
             {!isPending && user && (
               <div className="nav-account">
-
                 <div className="nav-avatar">
                   {initials}
                 </div>
@@ -756,7 +757,6 @@ export default function Navbar() {
                 >
                   <LogOut size={17} />
                 </button>
-
               </div>
             )}
 
@@ -774,9 +774,7 @@ export default function Navbar() {
                 <Menu size={23} />
               )}
             </button>
-
           </div>
-
         </nav>
 
         {/* MOBILE NAVIGATION */}
@@ -786,16 +784,14 @@ export default function Navbar() {
             mobileMenu ? "mobile-nav-open" : ""
           }`}
         >
-
           <div className="mobile-nav-inner">
-
             {navLinks.map((link, index) => {
               const Icon = link.icon;
 
               return (
                 <Link
                   key={link.name}
-                  href={link.href}
+                  href={getNavHref(link)}
                   onClick={() => setMobileMenu(false)}
                   style={{ "--i": index }}
                   className={`mobile-nav-link ${
@@ -816,9 +812,7 @@ export default function Navbar() {
 
             {user && (
               <div className="mobile-account">
-
                 <div className="mobile-user">
-
                   <div className="nav-avatar">
                     {initials}
                   </div>
@@ -827,7 +821,6 @@ export default function Navbar() {
                     <span>{user.name || "Reader"}</span>
                     <small>{user.email}</small>
                   </div>
-
                 </div>
 
                 <button
@@ -838,14 +831,10 @@ export default function Navbar() {
                   <LogOut size={17} />
                   Sign Out
                 </button>
-
               </div>
             )}
-
           </div>
-
         </div>
-
       </header>
     </>
   );
